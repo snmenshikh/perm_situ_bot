@@ -2,7 +2,7 @@ version: '3.8'
 services:
   situ_bot:
     image: python:3.11-slim
-    container_name: perm_situ_bot
+    container_name: perm-situ-bot
     restart: unless-stopped
     working_dir: /app
     environment:
