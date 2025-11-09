@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  situ_bot:
+    image: python:3.11-slim
+    container_name: perm_situ_bot
+    restart: unless-stopped
+    working_dir: /app
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - TZ=Asia/Yekaterinburg
+    command: >
+      sh -c "
+      apt-get update -qq && apt-get install -y -qq git &&
+      git clone --depth 1 https://github.com/snmenshikh/perm_situ_bot.git /tmp/repo &&
+      cp -r /tmp/repo/* /app/ &&
+      pip install --no-cache-dir -q -r requirements.txt &&
+      python -u perm_situ_bot.py
+      "
